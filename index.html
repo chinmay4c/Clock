@@ -3,34 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analog Clock</title>
+    <title>Clock</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="clock-container">
-        <div class="clock">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-            <div class="center-dot"></div>
-            <div class="numbers">
-                <!-- 12 hour markers -->
-                <span class="number" style="--rotation: 0deg;">12</span>
-                <span class="number" style="--rotation: 30deg;">1</span>
-                <span class="number" style="--rotation: 60deg;">2</span>
-                <span class="number" style="--rotation: 90deg;">3</span>
-                <span class="number" style="--rotation: 120deg;">4</span>
-                <span class="number" style="--rotation: 150deg;">5</span>
-                <span class="number" style="--rotation: 180deg;">6</span>
-                <span class="number" style="--rotation: 210deg;">7</span>
-                <span class="number" style="--rotation: 240deg;">8</span>
-                <span class="number" style="--rotation: 270deg;">9</span>
-                <span class="number" style="--rotation: 300deg;">10</span>
-                <span class="number" style="--rotation: 330deg;">11</span>
+    <div class="clock-suite">
+        <div class="main-clock">
+            <div class="clock">
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+                <div class="center-dot"></div>
+                <div class="numbers">
+                    <span class="number" style="--rotation: 0deg;"><span>12</span></span>
+                    <span class="number" style="--rotation: 30deg;"><span>1</span></span>
+                    <span class="number" style="--rotation: 60deg;"><span>2</span></span>
+                    <span class="number" style="--rotation: 90deg;"><span>3</span></span>
+                    <span class="number" style="--rotation: 120deg;"><span>4</span></span>
+                    <span class="number" style="--rotation: 150deg;"><span>5</span></span>
+                    <span class="number" style="--rotation: 180deg;"><span>6</span></span>
+                    <span class="number" style="--rotation: 210deg;"><span>7</span></span>
+                    <span class="number" style="--rotation: 240deg;"><span>8</span></span>
+                    <span class="number" style="--rotation: 270deg;"><span>9</span></span>
+                    <span class="number" style="--rotation: 300deg;"><span>10</span></span>
+                    <span class="number" style="--rotation: 330deg;"><span>11</span></span>
+                </div>
+                <div class="minute-marks"></div>
             </div>
-            <div class="minute-marks"></div>
+            <div class="digital-clock"></div>
+            <div class="date-display"></div>
         </div>
-        <div class="digital-clock"></div>
+        
+        <div class="world-clock">
+            <h2>World Clock</h2>
+            <div class="world-clock-container"></div>
+            <button id="add-world-clock">Add City</button>
+        </div>
+        
+        <div class="stopwatch">
+            <h2>Stopwatch</h2>
+            <div class="stopwatch-display">00:00:00.000</div>
+            <div class="stopwatch-controls">
+                <button id="start-stop">Start</button>
+                <button id="reset">Reset</button>
+                <button id="lap">Lap</button>
+            </div>
+            <ul class="lap-times"></ul>
+        </div>
+        
+        <div class="theme-switcher">
+            <h2>Theme</h2>
+            <select id="theme-select">
+                <option value="default">Default</option>
+                <option value="dark">Dark</option>
+                <option value="neon">Neon</option>
+            </select>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

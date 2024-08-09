@@ -4,22 +4,36 @@
     --clock-bg: #f0f0f0;
     --hand-color: #333;
     --second-hand-color: #ff6b6b;
+    --text-color: #333;
+    --bg-color: #e0e0e0;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    background-color: #e0e0e0;
+    background-color: var(--bg-color);
     font-family: Arial, sans-serif;
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.clock-container {
+.clock-suite {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.main-clock, .world-clock, .stopwatch, .theme-switcher {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .clock {
@@ -93,7 +107,6 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--clock-color);
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
 
 .number span {
@@ -101,45 +114,79 @@ body {
     transform: rotate(calc(-1 * var(--rotation)));
 }
 
-.minute-marks {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.minute-marks::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.minute-marks::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 10px;
-    background-color: var(--clock-color);
-    transform: translateX(-50%);
-}
-
-.digital-clock {
-    margin-top: 20px;
+.digital-clock, .date-display {
+    text-align: center;
     font-size: 1.5rem;
-    color: var(--clock-color);
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    margin-top: 10px;
 }
 
-@media (max-width: 500px) {
-    :root {
-        --clock-size: 250px;
-    }
-    .number {
-        font-size: 1rem;
+.world-clock-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.world-clock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stopwatch-display {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.stopwatch-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.lap-times {
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: var(--clock-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Dark theme */
+body.dark-theme {
+    --clock-color: #fff;
+    --clock-bg: #333;
+    --hand-color: #fff;
+    --second-hand-color: #ff6b6b;
+    --text-color: #fff;
+    --bg-color: #222;
+}
+
+/* Neon theme */
+body.neon-theme {
+    --clock-color: #0ff;
+    --clock-bg: #111;
+    --hand-color: #f0f;
+    --second-hand-color: #ff0;
+    --text-color: #0ff;
+    --bg-color: #000;
+}
+
+@media (max-width: 768px) {
+    .clock-suite {
+        flex-direction: column;
     }
 }

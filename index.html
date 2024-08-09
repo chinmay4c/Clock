@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="clock-suite">
         <div class="main-clock">
             <div class="clock">
+                <div class="outer-ring"></div>
+                <div class="inner-circle"></div>
                 <div class="hand hour-hand"></div>
                 <div class="hand minute-hand"></div>
                 <div class="hand second-hand"></div>
@@ -28,36 +31,40 @@
                     <span class="number" style="--rotation: 300deg;"><span>10</span></span>
                     <span class="number" style="--rotation: 330deg;"><span>11</span></span>
                 </div>
-                <div class="minute-marks"></div>
             </div>
-            <div class="digital-clock"></div>
-            <div class="date-display"></div>
+            <div class="digital-display">
+                <div class="digital-time"></div>
+                <div class="digital-date"></div>
+            </div>
         </div>
         
         <div class="world-clock">
             <h2>World Clock</h2>
             <div class="world-clock-container"></div>
-            <button id="add-world-clock">Add City</button>
+            <button id="add-world-clock" class="neon-button">Add City</button>
         </div>
         
         <div class="stopwatch">
             <h2>Stopwatch</h2>
             <div class="stopwatch-display">00:00:00.000</div>
             <div class="stopwatch-controls">
-                <button id="start-stop">Start</button>
-                <button id="reset">Reset</button>
-                <button id="lap">Lap</button>
+                <button id="start-stop" class="neon-button">Start</button>
+                <button id="reset" class="neon-button">Reset</button>
+                <button id="lap" class="neon-button">Lap</button>
             </div>
             <ul class="lap-times"></ul>
         </div>
         
-        <div class="theme-switcher">
-            <h2>Theme</h2>
-            <select id="theme-select">
-                <option value="default">Default</option>
-                <option value="dark">Dark</option>
-                <option value="neon">Neon</option>
-            </select>
+        <div class="timer">
+            <h2>Timer</h2>
+            <div class="timer-display">00:00:00</div>
+            <div class="timer-controls">
+                <input type="number" id="hours" placeholder="HH" min="0" max="23">
+                <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+                <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+                <button id="start-timer" class="neon-button">Start</button>
+                <button id="reset-timer" class="neon-button">Reset</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

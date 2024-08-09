@@ -1,53 +1,65 @@
 :root {
+    --bg-color: #000;
+    --text-color: #0ff;
+    --accent-color: #f0f;
     --clock-size: 300px;
-    --clock-color: #333;
-    --clock-bg: #f0f0f0;
-    --hand-color: #333;
-    --second-hand-color: #ff6b6b;
-    --text-color: #333;
-    --bg-color: #e0e0e0;
+    --neon-glow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
 }
 
 body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Orbitron', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: var(--bg-color);
-    font-family: Arial, sans-serif;
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
 }
 
 .clock-suite {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     max-width: 1200px;
     padding: 20px;
 }
 
-.main-clock, .world-clock, .stopwatch, .theme-switcher {
-    background-color: #fff;
-    border-radius: 10px;
+.main-clock, .world-clock, .stopwatch, .timer {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 .clock {
     width: var(--clock-size);
     height: var(--clock-size);
     border-radius: 50%;
-    background-color: var(--clock-bg);
-    border: 10px solid var(--clock-color);
-    box-shadow: 
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #fff,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
     position: relative;
+    background: radial-gradient(circle at center, #222, #000);
+}
+
+.outer-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--text-color);
+    box-shadow: var(--neon-glow);
+}
+
+.inner-circle {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #111, #000);
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.5);
 }
 
 .hand {
@@ -55,58 +67,61 @@ body {
     bottom: 50%;
     left: 50%;
     transform-origin: 50% 100%;
-    transition: transform 0.05s cubic-bezier(0.4, 2.08, 0.55, 0.44);
     z-index: 10;
+    transition: transform 0.05s cubic-bezier(0.4, 2.08, 0.55, 0.44);
 }
 
 .hour-hand {
     width: 8px;
     height: 30%;
-    background-color: var(--hand-color);
+    background: linear-gradient(to top, var(--text-color), transparent);
     border-radius: 4px;
 }
 
 .minute-hand {
-    width: 6px;
+    width: 4px;
     height: 40%;
-    background-color: var(--hand-color);
-    border-radius: 3px;
+    background: linear-gradient(to top, var(--accent-color), transparent);
+    border-radius: 2px;
 }
 
 .second-hand {
     width: 2px;
     height: 45%;
-    background-color: var(--second-hand-color);
+    background-color: #f00;
     border-radius: 1px;
+    box-shadow: 0 0 10px #f00, 0 0 20px #f00;
 }
 
 .center-dot {
     width: 12px;
     height: 12px;
-    background-color: var(--second-hand-color);
+    background-color: var(--text-color);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 11;
+    box-shadow: var(--neon-glow);
 }
 
 .numbers {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: center;
 }
 
 .number {
     position: absolute;
     width: 100%;
     height: 100%;
+    text-align: center;
     transform: rotate(var(--rotation));
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--clock-color);
+    color: var(--text-color);
+    text-shadow: var(--neon-glow);
 }
 
 .number span {
@@ -114,10 +129,19 @@ body {
     transform: rotate(calc(-1 * var(--rotation)));
 }
 
-.digital-clock, .date-display {
+.digital-display {
     text-align: center;
-    font-size: 1.5rem;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+.digital-time {
+    font-size: 2.5rem;
+    text-shadow: var(--neon-glow);
+}
+
+.digital-date {
+    font-size: 1.2rem;
+    margin-top: 5px;
 }
 
 .world-clock-container {
@@ -130,18 +154,23 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(0, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.stopwatch-display {
+.stopwatch-display, .timer-display {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 10px;
+    text-shadow: var(--neon-glow);
 }
 
-.stopwatch-controls {
+.stopwatch-controls, .timer-controls {
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .lap-times {
@@ -151,42 +180,62 @@ body {
     list-style-type: none;
 }
 
-button {
-    padding: 5px 10px;
-    background-color: var(--clock-color);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-select {
+.lap-times li {
+    background: rgba(255, 0, 255, 0.1);
+    margin: 5px 0;
     padding: 5px;
     border-radius: 5px;
 }
 
-/* Dark theme */
-body.dark-theme {
-    --clock-color: #fff;
-    --clock-bg: #333;
-    --hand-color: #fff;
-    --second-hand-color: #ff6b6b;
-    --text-color: #fff;
-    --bg-color: #222;
+.neon-button {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease;
 }
 
-/* Neon theme */
-body.neon-theme {
-    --clock-color: #0ff;
-    --clock-bg: #111;
-    --hand-color: #f0f;
-    --second-hand-color: #ff0;
-    --text-color: #0ff;
-    --bg-color: #000;
+.neon-button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    box-shadow: var(--neon-glow);
+}
+
+input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    font-family: 'Orbitron', sans-serif;
 }
 
 @media (max-width: 768px) {
     .clock-suite {
         flex-direction: column;
     }
+    
+    .clock {
+        --clock-size: 250px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.clock {
+    animation: pulse 4s infinite ease-in-out;
 }

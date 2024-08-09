@@ -7,17 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="clock">
-        <div class="hand hour-hand"></div>
-        <div class="hand minute-hand"></div>
-        <div class="hand second-hand"></div>
-        <div class="center-dot"></div>
-        <div class="numbers">
-            <span class="number number-12">12</span>
-            <span class="number number-3">3</span>
-            <span class="number number-6">6</span>
-            <span class="number number-9">9</span>
+    <div class="clock-container">
+        <div class="clock">
+            <div class="hand hour-hand"></div>
+            <div class="hand minute-hand"></div>
+            <div class="hand second-hand"></div>
+            <div class="center-dot"></div>
+            <div class="numbers">
+                <!-- 12 hour markers -->
+                <span class="number" style="--rotation: 0deg;">12</span>
+                <span class="number" style="--rotation: 30deg;">1</span>
+                <span class="number" style="--rotation: 60deg;">2</span>
+                <span class="number" style="--rotation: 90deg;">3</span>
+                <span class="number" style="--rotation: 120deg;">4</span>
+                <span class="number" style="--rotation: 150deg;">5</span>
+                <span class="number" style="--rotation: 180deg;">6</span>
+                <span class="number" style="--rotation: 210deg;">7</span>
+                <span class="number" style="--rotation: 240deg;">8</span>
+                <span class="number" style="--rotation: 270deg;">9</span>
+                <span class="number" style="--rotation: 300deg;">10</span>
+                <span class="number" style="--rotation: 330deg;">11</span>
+            </div>
+            <div class="minute-marks"></div>
         </div>
+        <div class="digital-clock"></div>
     </div>
     <script src="script.js"></script>
 </body>
